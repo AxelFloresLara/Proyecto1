@@ -14,6 +14,9 @@ public class Cliente extends Conexion{
         public JRadioButton elegir_contexto = null; 
         public JRadioButton elegir_contexto2 = null;
         public JRadioButton elegir_contexto3 = null;
+        public JFrame ventana_jugar = null;
+        public JLabel nombre1 = null;
+        public JLabel nombre2 = null;
         
         
     public Cliente() throws IOException{super("cliente");}
@@ -21,6 +24,14 @@ public class Cliente extends Conexion{
         
         /* Creación de los objetos*/
         /* JFrame: Es utilizado para crear una nueva ventana, que funcionará posteriormente como contenedor del resto de la interfaz*/
+        /* JTextField: Son utilizados como almacenadores de texto, en ese caso serán empleados para ingresar los nombres de usuarios */
+        /* JRadioButton: Son botones de selección, serán implementados para elegir las cartas con las qué se quiere jugar */
+        /* .setSize: Es utilizado para definir el tamaño del objeto que se está creando*/
+        /* .setVisible: Es utilizado para definir si el objeto aparecerá o no */
+        /* .setLocation: Es utilizado para configurar la ubicación de aparición del objeto, según las coordenadas que se decidan */
+        /* .setResizable: Se le define a la ventana principal si tiene la posibilidad de modificar su tamaño original o no. */
+        /* .setLayout: Es definido como null para así facilitar el acomodo de los demás componentes graficos */
+        /* .setDefaultCloseOperation: Con esta definición hacemos que una vez la ventana se cierre, el programa acabe con la ejecución */
         
         ventana_cliente = new JFrame("Cliente");
         ventana_cliente.setSize(600, 540);
@@ -83,6 +94,22 @@ public class Cliente extends Conexion{
         };
         elegir_contexto3.addActionListener(oir_contexto3); 
         
+        ventana_jugar = new JFrame("JUEGA!");
+        ventana_jugar.setSize(600, 540);
+        ventana_jugar.setLocation(300, 100);
+        ventana_jugar.setVisible(false);
+        ventana_jugar.setResizable(false);
+        ventana_jugar.setLayout(null);
+        ventana_jugar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         
+        nombre1 = new JLabel("");
+        ventana_jugar.add(nombre1);
+        nombre1.setLocation(5, 2);
+        nombre1.setSize(150, 30);
+        
+        nombre2 = new JLabel("");
+        ventana_jugar.add(nombre2);
+        nombre2.setLocation(5, 25);
+        nombre2.setSize(150, 30);
     }
 }
