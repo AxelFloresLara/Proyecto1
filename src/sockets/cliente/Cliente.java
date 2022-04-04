@@ -22,6 +22,10 @@ public class Cliente extends Conexion{
         public JButton boton_creditos = null;
         public JTextArea creditos = null;
         public JButton boton_volver2 = null;
+        public JButton boton_reglas = null;
+        public JFrame ventana_reglas = null; 
+        public JButton boton_volver1 = null;
+        public JTextArea reglas = null; 
         
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
@@ -188,6 +192,51 @@ public class Cliente extends Conexion{
         };
         boton_volver2.addActionListener(oir_volver_creditos);
         
+        boton_reglas = new JButton("Como jugar");
+        ventana_cliente.add(boton_reglas);
+        boton_reglas.setLocation(464, 450);
+        boton_reglas.setBackground(Color.LIGHT_GRAY);
+        boton_reglas.setSize(120, 30);
+        ActionListener oir_reglas = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_cliente.setVisible(false);
+                ventana_reglas.setVisible(true);
+                reglas.setVisible(true);
+            }
+        };
+        boton_reglas.addActionListener(oir_reglas);
+
+        ventana_reglas = new JFrame("COMO JUGAR");
+        ventana_reglas.setSize(600, 540);
+        ventana_reglas.setVisible(false);
+        ventana_reglas.setLocation(300, 100);
+        ventana_reglas.setResizable(false);
+        ventana_reglas.setLayout(null);
+        ventana_reglas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        reglas = new JTextArea("Aquí va la regla numero 1 \n\nAquí va la regla numero 2 \n\nEspecificación de carta 1 \n\n Especificación carta 2 \n\nEspecificacion carta 3");
+        ventana_reglas.add(reglas);
+        reglas.setLocation(100, 50);
+        reglas.setSize(375, 275);
+        reglas.setEditable(false);
+        reglas.setBackground(Color.GRAY);
+        reglas.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 20));
+        
+        boton_volver1 = new JButton("Volver");
+        ventana_reglas.add(boton_volver1);
+        boton_volver1.setLocation(0,0);
+        boton_volver1.setSize(80, 30);
+        boton_volver1.setBackground(Color.LIGHT_GRAY);
+        ActionListener oir_volver_reglas = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_reglas.dispose();
+                ventana_cliente.setVisible(true);
+            }
+        };
+        boton_volver1.addActionListener(oir_volver_reglas);
+                       
         
     }
 }
