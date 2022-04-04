@@ -18,7 +18,10 @@ public class Cliente extends Conexion{
         public JLabel nombre1 = null;
         public JLabel nombre2 = null;
         public JButton boton_validar = null; 
-        
+        public JFrame ventana_creditos = null; 
+        public JButton boton_creditos = null;
+        public JTextArea creditos = null;
+        public JButton boton_volver2 = null;
         
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
@@ -140,6 +143,50 @@ public class Cliente extends Conexion{
             }
         };
         boton_validar.addActionListener(oir_validar);
+        
+        ventana_creditos = new JFrame("creditos");
+        ventana_creditos.setSize(600, 540);
+        ventana_creditos.setResizable(false);
+        ventana_creditos.setLocation(300, 100);
+        ventana_creditos.setVisible(false);
+        ventana_creditos.setLayout(null);
+        
+        boton_creditos = new JButton("Creditos");
+        ventana_cliente.add(boton_creditos);
+        boton_creditos.setLocation(0, 450);
+        boton_creditos.setBackground(Color.LIGHT_GRAY);
+        boton_creditos.setSize(120, 30);
+        ActionListener oir_creditos = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_cliente.setVisible(false);
+                ventana_creditos.setVisible(true);
+           
+            }
+        };      
+        boton_creditos.addActionListener(oir_creditos);
+        
+        creditos = new JTextArea("Aquí va mi nombre \n\nAquí va mi carné \n\nAquí va la insitución \n\nAquí va la fecha de entrega");
+        ventana_creditos.add(creditos);
+        creditos.setLocation(100, 50);
+        creditos.setSize(375, 275);
+        creditos.setEditable(false);
+        creditos.setBackground(Color.LIGHT_GRAY);
+        creditos.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 20));
+        
+        boton_volver2 = new JButton("Volver");
+        ventana_creditos.add(boton_volver2);
+        boton_volver2.setLocation(0,0);
+        boton_volver2.setBackground(Color.LIGHT_GRAY);
+        boton_volver2.setSize(80, 30);
+        ActionListener oir_volver_creditos = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_creditos.dispose();
+                ventana_cliente.setVisible(true);
+            }
+        };
+        boton_volver2.addActionListener(oir_volver_creditos);
         
         
     }
