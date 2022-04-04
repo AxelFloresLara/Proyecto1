@@ -26,6 +26,11 @@ public class Cliente extends Conexion{
         public JFrame ventana_reglas = null; 
         public JButton boton_volver1 = null;
         public JTextArea reglas = null; 
+        public JLabel titulo_primero = null;
+        public JLabel titulo_segundo = null;
+        public JLabel cronometro = null;
+        public Timer tiempo = null;
+        public int seg, min;
         
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
@@ -142,7 +147,7 @@ public class Cliente extends Conexion{
                     ventana_jugar.setVisible(true);
                     nombre1.setText("Usuario 1: "+ingresar_nombre1.getText());
                     nombre2.setText("Usuario 2: "+ingresar_nombre2.getText());                   
-                
+                    tiempo.start();
                }
             }
         };
@@ -236,6 +241,40 @@ public class Cliente extends Conexion{
             }
         };
         boton_volver1.addActionListener(oir_volver_reglas);
+        
+        titulo_primero = new JLabel("Nombre 1");
+        ventana_cliente.add(titulo_primero);
+        titulo_primero.setLocation(160, 170);
+        titulo_primero.setSize(100, 40);
+        titulo_primero.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
+        
+        titulo_segundo = new JLabel("Nombre 2");
+        ventana_cliente.add(titulo_segundo);
+        titulo_segundo.setLocation(320, 170);
+        titulo_segundo.setSize(100, 40); 
+        titulo_segundo.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
+        
+        cronometro = new JLabel();
+        cronometro.setBounds(525,5,150,40);
+        cronometro.setVisible(true);
+        ventana_jugar.add(cronometro);
+        cronometro.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
+        
+        tiempo = new Timer (1000, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {
+                
+                seg++;
+                if(seg == 60){
+                    min++;
+                    seg=0;
+                }
+                
+            //declaramos en una variable cronometro el tiempo que transcurre
+            cronometro.setText(min+":"+seg); 
+            }});
                        
         
     }
