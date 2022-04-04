@@ -1,13 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sockets.servidor;
+import sockets.conexion.Conexion;
+import java.io.*;
 
-/**
- *
- * @author Axel
- */
-public class Servidor {
+public class Servidor extends Conexion {
+    public Servidor() throws IOException{super("servidor");}
+    public void startServer(){
+        try{
+            System.out.println("Esperando la conexion...");
+            cs = ss.accept();
+            System.out.println("Cliente en linea");           
+            salida_cliente = new DataOutputStream(cs.getOutputStream());            
+            salida_cliente.writeUTF("Peticion recibida y aceptada");          
+        }    
+        catch (IOException e){
+            System.out.println("Se dió la excepcion");  
+        }
     
+    }
 }
