@@ -1,4 +1,6 @@
 package sockets.cliente;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import sockets.conexion.Conexion;
 import javax.swing.*;
@@ -7,7 +9,13 @@ import javax.swing.*;
 public class Cliente extends Conexion{
     /* Objetos */
         public JFrame ventana_cliente = null; 
-       
+        public JTextField ingresar_nombre1 = null;
+        public JTextField ingresar_nombre2 = null;
+        public JRadioButton elegir_contexto = null; 
+        public JRadioButton elegir_contexto2 = null;
+        public JRadioButton elegir_contexto3 = null;
+        
+        
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
         
@@ -21,6 +29,59 @@ public class Cliente extends Conexion{
         ventana_cliente.setResizable(false);
         ventana_cliente.setLayout(null);
         ventana_cliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        ingresar_nombre1 = new JTextField(10);
+        ventana_cliente.add(ingresar_nombre1);
+        ingresar_nombre1.setBounds(160, 200, 120, 25);
+        ingresar_nombre1.setFont(new Font("Arial", Font.ROMAN_BASELINE, 18));  
+        
+        ingresar_nombre2 = new JTextField(10);
+        ventana_cliente.add(ingresar_nombre2);
+        ingresar_nombre2.setSize(120, 25);
+        ingresar_nombre2.setLocation(320, 200);
+        ingresar_nombre2.setFont(new Font("Arial", Font.ROMAN_BASELINE, 18));
+        
+        elegir_contexto = new JRadioButton("Categoría 1", true);
+        ventana_cliente.add(elegir_contexto);
+        elegir_contexto.setBounds(125, 300, 100, 20);
+        elegir_contexto.setVisible(true);       
+        ActionListener oir_contexto = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                elegir_contexto.setSelected(true);
+                elegir_contexto2.setSelected(false);
+                elegir_contexto3.setSelected(false);                         
+            }
+        };
+        elegir_contexto.addActionListener(oir_contexto);            
+        
+        elegir_contexto2 = new JRadioButton("Categoría 2");
+        ventana_cliente.add(elegir_contexto2);
+        elegir_contexto2.setBounds(250, 300, 100, 20);
+        elegir_contexto2.setVisible(true);       
+        ActionListener oir_contexto2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                elegir_contexto.setSelected(false);
+                elegir_contexto2.setSelected(true);
+                elegir_contexto3.setSelected(false);           
+            }
+        };
+        elegir_contexto2.addActionListener(oir_contexto2);
+          
+        elegir_contexto3 = new JRadioButton("Categoría 3");
+        ventana_cliente.add(elegir_contexto3);
+        elegir_contexto3.setBounds(375, 300, 130, 20);
+        elegir_contexto3.setVisible(true);
+        ActionListener oir_contexto3 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                elegir_contexto.setSelected(false);
+                elegir_contexto2.setSelected(false);
+                elegir_contexto3.setSelected(true);                         
+            }
+        };
+        elegir_contexto3.addActionListener(oir_contexto3); 
         
         
     }
