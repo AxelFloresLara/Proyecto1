@@ -17,6 +17,7 @@ public class Cliente extends Conexion{
         public JFrame ventana_jugar = null;
         public JLabel nombre1 = null;
         public JLabel nombre2 = null;
+        public JButton boton_validar = null; 
         
         
     public Cliente() throws IOException{super("cliente");}
@@ -32,6 +33,8 @@ public class Cliente extends Conexion{
         /* .setResizable: Se le define a la ventana principal si tiene la posibilidad de modificar su tamaño original o no. */
         /* .setLayout: Es definido como null para así facilitar el acomodo de los demás componentes graficos */
         /* .setDefaultCloseOperation: Con esta definición hacemos que una vez la ventana se cierre, el programa acabe con la ejecución */
+        /* add: para añadir a una ventana en especifico un widget*/
+        /* ActionListener: para manejar y detectar eventos de accion en los botones*/
         
         ventana_cliente = new JFrame("Cliente");
         ventana_cliente.setSize(600, 540);
@@ -111,5 +114,33 @@ public class Cliente extends Conexion{
         ventana_jugar.add(nombre2);
         nombre2.setLocation(5, 25);
         nombre2.setSize(150, 30);
+        
+        boton_validar = new JButton("Jugar");  
+        ventana_cliente.add(boton_validar);
+        boton_validar.setSize(140, 50);
+        boton_validar.setBackground(Color.LIGHT_GRAY);
+        boton_validar.setLocation(230, 240);   
+        boton_validar.setFont(new Font("Arial", Font.ROMAN_BASELINE, 18));
+        ActionListener oir_validar = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               if(ingresar_nombre1.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Ingrese el nombre del usuario 1");
+               }
+               if(ingresar_nombre2.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Ingrese el nombre del usuario 2");
+               }
+               else{
+                    ventana_cliente.setVisible(false);
+                    ventana_jugar.setVisible(true);
+                    nombre1.setText("Usuario 1: "+ingresar_nombre1.getText());
+                    nombre2.setText("Usuario 2: "+ingresar_nombre2.getText());                   
+                
+               }
+            }
+        };
+        boton_validar.addActionListener(oir_validar);
+        
+        
     }
 }
