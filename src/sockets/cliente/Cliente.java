@@ -4,33 +4,19 @@ import java.awt.event.*;
 import java.io.*;
 import sockets.conexion.Conexion;
 import javax.swing.*;
+import sockets.servidor.Servidor;
 
 
 public class Cliente extends Conexion{
     /* Objetos */
-        public JFrame ventana_cliente = null; 
-        public JTextField ingresar_nombre1 = null;
-        public JTextField ingresar_nombre2 = null;
-        public JRadioButton elegir_contexto = null; 
-        public JRadioButton elegir_contexto2 = null;
-        public JRadioButton elegir_contexto3 = null;
-        public JFrame ventana_jugar = null;
-        public JLabel nombre1 = null;
-        public JLabel nombre2 = null;
-        public JButton boton_validar = null; 
-        public JFrame ventana_creditos = null; 
-        public JButton boton_creditos = null;
-        public JTextArea creditos = null;
-        public JButton boton_volver2 = null;
-        public JButton boton_reglas = null;
-        public JFrame ventana_reglas = null; 
-        public JButton boton_volver1 = null;
-        public JTextArea reglas = null; 
-        public JLabel titulo_primero = null;
-        public JLabel titulo_segundo = null;
-        public JLabel cronometro = null;
-        public Timer tiempo = null;
-        public int seg, min;
+        protected JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas = null; 
+        protected JTextField ingresar_nombre1, ingresar_nombre2 = null;
+        protected JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3  = null; 
+        protected JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1 = null;
+        protected JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1 = null; 
+        protected JTextArea creditos, reglas = null;
+        protected Timer tiempo = null;
+        protected int seg, min, aleatorio = 0;
         
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
@@ -47,7 +33,7 @@ public class Cliente extends Conexion{
         /* .setDefaultCloseOperation: Con esta definición hacemos que una vez la ventana se cierre, el programa acabe con la ejecución */
         /* add: para añadir a una ventana en especifico un widget*/
         /* ActionListener: para manejar y detectar eventos de accion en los botones*/
-        
+                   
         ventana_cliente = new JFrame("Cliente");
         ventana_cliente.setSize(600, 540);
         ventana_cliente.setVisible(true);
@@ -117,15 +103,23 @@ public class Cliente extends Conexion{
         ventana_jugar.setLayout(null);
         ventana_jugar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         
+        actual_1 = new JLabel("");
+        ventana_jugar.add(actual_1);
+        actual_1.setLocation(400, 2);
+        actual_1.setSize(150, 30);
+        actual_1.setFont(new Font("Arial", Font.ROMAN_BASELINE, 15));
+        
         nombre1 = new JLabel("");
         ventana_jugar.add(nombre1);
         nombre1.setLocation(5, 2);
         nombre1.setSize(150, 30);
+        nombre1.setFont(new Font("Arial", Font.ROMAN_BASELINE, 15));
         
         nombre2 = new JLabel("");
         ventana_jugar.add(nombre2);
         nombre2.setLocation(5, 25);
         nombre2.setSize(150, 30);
+        nombre2.setFont(new Font("Arial", Font.ROMAN_BASELINE, 15));
         
         boton_validar = new JButton("Jugar");  
         ventana_cliente.add(boton_validar);
@@ -135,7 +129,7 @@ public class Cliente extends Conexion{
         boton_validar.setFont(new Font("Arial", Font.ROMAN_BASELINE, 18));
         ActionListener oir_validar = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                if(ingresar_nombre1.getText().equals("")){
                JOptionPane.showMessageDialog(null, "Ingrese el nombre del usuario 1");
                }
@@ -148,6 +142,14 @@ public class Cliente extends Conexion{
                     nombre1.setText("Usuario 1: "+ingresar_nombre1.getText());
                     nombre2.setText("Usuario 2: "+ingresar_nombre2.getText());                   
                     tiempo.start();
+                    aleatorio = (int) (Math.random() * 2);
+                    if(aleatorio == 0){
+                        actual_1.setText("Turno actual: "+ ingresar_nombre1.getText());
+                    }
+                    if(aleatorio == 1){
+                        actual_1.setText("Turno actual: "+ ingresar_nombre2.getText());
+                    }
+                    
                }
             }
         };
@@ -255,7 +257,7 @@ public class Cliente extends Conexion{
         titulo_segundo.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
         
         cronometro = new JLabel();
-        cronometro.setBounds(525,5,150,40);
+        cronometro.setBounds(540,5,150,40);
         cronometro.setVisible(true);
         ventana_jugar.add(cronometro);
         cronometro.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
