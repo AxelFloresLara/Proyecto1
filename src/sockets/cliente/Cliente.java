@@ -4,19 +4,20 @@ import java.awt.event.*;
 import java.io.*;
 import sockets.conexion.Conexion;
 import javax.swing.*;
-import sockets.servidor.Servidor;
 
 
 public class Cliente extends Conexion{
     /* Objetos */
         protected JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas = null; 
         protected JTextField ingresar_nombre1, ingresar_nombre2 = null;
-        protected JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3  = null; 
-        protected JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1 = null;
+        protected JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3, tamaño1, tamaño2, tamaño3  = null; 
+        protected JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, matriz [][] = null;
         protected JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1 = null; 
         protected JTextArea creditos, reglas = null;
         protected Timer tiempo = null;
         protected int seg, min, aleatorio = 0;
+        int mat [][] = new int[4][5];
+        int mat2 [][] = new int[4][5];
         
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
@@ -266,18 +267,57 @@ public class Cliente extends Conexion{
         {
             @Override
             public void actionPerformed(ActionEvent e) 
-            {
-                
+            {           
                 seg++;
                 if(seg == 60){
                     min++;
                     seg=0;
-                }
-                
+                }        
             //declaramos en una variable cronometro el tiempo que transcurre
             cronometro.setText(min+":"+seg); 
             }});
-                       
+        
+        tamaño1 = new JRadioButton("Tamaño 1", true);
+        ventana_cliente.add(tamaño1);
+        tamaño1.setBounds(125, 330, 100, 20);
+        tamaño1.setVisible(true);       
+        ActionListener oir_tamaño = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tamaño1.setSelected(true);
+                tamaño2.setSelected(false);
+                tamaño3.setSelected(false);                         
+            }
+        };
+        tamaño1.addActionListener(oir_tamaño);            
+        
+        tamaño2 = new JRadioButton("Tamaño 2");
+        ventana_cliente.add(tamaño2);
+        tamaño2.setBounds(250, 330, 100, 20);
+        tamaño2.setVisible(true);       
+        ActionListener oir_tamaño2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tamaño1.setSelected(false);
+                tamaño2.setSelected(true);
+                tamaño3.setSelected(false);           
+            }
+        };
+        tamaño2.addActionListener(oir_tamaño2);
+          
+        tamaño3 = new JRadioButton("Tamaño 3");
+        ventana_cliente.add(tamaño3);
+        tamaño3.setBounds(375, 330, 130, 20);
+        tamaño3.setVisible(true);
+        ActionListener oir_tamaño3 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tamaño1.setSelected(false);
+                tamaño2.setSelected(false);
+                tamaño3.setSelected(true);                         
+            }
+        };
+        tamaño3.addActionListener(oir_tamaño3);               
         
     }
 }
