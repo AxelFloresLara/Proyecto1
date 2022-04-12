@@ -8,11 +8,11 @@ import javax.swing.*;
 
 public class Cliente extends Conexion{
     /* Objetos */
-        protected JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas = null; 
+        protected JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas, ventana_info1, ventana_info2, ventana_info3 = null; 
         protected JTextField ingresar_nombre1, ingresar_nombre2 = null;
         protected JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3, tamaño1, tamaño2, tamaño3  = null; 
-        protected JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, matriz [][] = null;
-        protected JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1 = null; 
+        public JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, matriz [][], cart1 = null;
+        protected JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1, info_cartas1, info_cartas2, info_cartas3 = null; 
         protected JTextArea creditos, reglas = null;
         protected Timer tiempo = null;
         protected int seg, min, aleatorio = 0;
@@ -56,7 +56,7 @@ public class Cliente extends Conexion{
         
         elegir_contexto = new JRadioButton("Categoría 1", true);
         ventana_cliente.add(elegir_contexto);
-        elegir_contexto.setBounds(125, 300, 100, 20);
+        elegir_contexto.setBounds(100, 300, 100, 20);
         elegir_contexto.setVisible(true);       
         ActionListener oir_contexto = new ActionListener() {
             @Override
@@ -84,7 +84,7 @@ public class Cliente extends Conexion{
           
         elegir_contexto3 = new JRadioButton("Categoría 3");
         ventana_cliente.add(elegir_contexto3);
-        elegir_contexto3.setBounds(375, 300, 130, 20);
+        elegir_contexto3.setBounds(400, 300, 130, 20);
         elegir_contexto3.setVisible(true);
         ActionListener oir_contexto3 = new ActionListener() {
             @Override
@@ -317,7 +317,61 @@ public class Cliente extends Conexion{
                 tamaño3.setSelected(true);                         
             }
         };
-        tamaño3.addActionListener(oir_tamaño3);               
+        tamaño3.addActionListener(oir_tamaño3); 
         
-    }
+        info_cartas1 = new JButton("info");
+        ventana_cliente.add(info_cartas1);
+        info_cartas1.setLocation(70, 305);
+        info_cartas1.setSize(30, 15);
+        
+        info_cartas2 = new JButton("info");
+        ventana_cliente.add(info_cartas2);
+        info_cartas2.setLocation(220, 305);
+        info_cartas2.setSize(30, 15);
+        
+        info_cartas3 = new JButton("info");
+        ventana_cliente.add(info_cartas3);
+        info_cartas3.setLocation(370, 305);
+        info_cartas3.setSize(30, 15);
+        
+        ventana_info1 = new JFrame("JUEGA!");
+        ventana_info1.setSize(600, 540);
+        ventana_info1.setLocation(300, 100);
+        ventana_info1.setVisible(false);
+        ventana_info1.setResizable(true);
+        ventana_info1.setLayout(null);
+        ventana_info1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        
+        ventana_info2 = new JFrame("JUEGA!");
+        ventana_info2.setSize(600, 540);
+        ventana_info2.setLocation(300, 100);
+        ventana_info2.setVisible(false);
+        ventana_info2.setResizable(false);
+        ventana_info2.setLayout(null);
+        ventana_info2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        
+        ventana_info2 = new JFrame("JUEGA!");
+        ventana_info2.setSize(600, 540);
+        ventana_info2.setLocation(300, 100);
+        ventana_info2.setVisible(false);
+        ventana_info2.setResizable(false);
+        ventana_info2.setLayout(null);
+        ventana_info2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        
+        ActionListener oir_info1 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_info1.setVisible(true);
+                ventana_cliente.setVisible(false);
+            }
+        };
+        info_cartas1.addActionListener(oir_info1); 
+        
+        cart1 = new JLabel(new ImageIcon("src/imagenes/1.png"));
+        ventana_info1.add(cart1);
+        cart1.setBounds(20,15,100,120);
+        cart1.setVisible(true);
+        
+        
+            }                        
 }
