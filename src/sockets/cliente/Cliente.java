@@ -11,17 +11,17 @@ public class Cliente extends Conexion{
         protected JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas, ventana_info1, ventana_info2, ventana_info3 = null; 
         protected JTextField ingresar_nombre1, ingresar_nombre2 = null;
         protected JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3, tamaño1, tamaño2, tamaño3  = null; 
-        public JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, matriz [][], cart1 = null;
-        protected JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1, info_cartas1, info_cartas2, info_cartas3 = null; 
+        protected JLabel nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, matriz [][], cr_cart1, cr_cart2, cr_cart3, cr_cart4, cr_cart5, cr_cart6, cr_cart7, cr_cart8, cr_cart9, cr_cart10, po_cart1, po_cart2, po_cart3, po_cart4, po_cart5, po_cart6, po_cart7, po_cart8, po_cart9, po_cart10,nt_cart1, nt_cart2, nt_cart3, nt_cart4, nt_cart5, nt_cart6, nt_cart7, nt_cart8, nt_cart9, nt_cart10, titulo_info = null;
+        protected JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1, info_cartas1, info_cartas2, info_cartas3, boton_volver, boton_volver3, boton_volver4 = null; 
         protected JTextArea creditos, reglas = null;
         protected Timer tiempo = null;
         protected int seg, min, aleatorio = 0;
         int mat [][] = new int[4][5];
         int mat2 [][] = new int[4][5];
-        
+  
     public Cliente() throws IOException{super("cliente");}
     public void hacer_interfaz(){
-        
+          
         /* Creación de los objetos*/
         /* JFrame: Es utilizado para crear una nueva ventana, que funcionará posteriormente como contenedor del resto de la interfaz*/
         /* JTextField: Son utilizados como almacenadores de texto, en ese caso serán empleados para ingresar los nombres de usuarios */
@@ -200,6 +200,8 @@ public class Cliente extends Conexion{
         };
         boton_volver2.addActionListener(oir_volver_creditos);
         
+        
+        /**/
         boton_reglas = new JButton("Como jugar");
         ventana_cliente.add(boton_reglas);
         boton_reglas.setLocation(464, 450);
@@ -214,7 +216,10 @@ public class Cliente extends Conexion{
             }
         };
         boton_reglas.addActionListener(oir_reglas);
-
+        /**/
+        
+        
+        /**/
         ventana_reglas = new JFrame("COMO JUGAR");
         ventana_reglas.setSize(600, 540);
         ventana_reglas.setVisible(false);
@@ -230,9 +235,13 @@ public class Cliente extends Conexion{
         reglas.setEditable(false);
         reglas.setBackground(Color.GRAY);
         reglas.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 20));
+        /**/
         
+        
+        /**/
         boton_volver1 = new JButton("Volver");
         ventana_reglas.add(boton_volver1);
+        boton_volver1.setVisible(true);
         boton_volver1.setLocation(0,0);
         boton_volver1.setSize(80, 30);
         boton_volver1.setBackground(Color.LIGHT_GRAY);
@@ -244,7 +253,9 @@ public class Cliente extends Conexion{
             }
         };
         boton_volver1.addActionListener(oir_volver_reglas);
+        /**/
         
+        /**/
         titulo_primero = new JLabel("Nombre 1");
         ventana_cliente.add(titulo_primero);
         titulo_primero.setLocation(160, 170);
@@ -256,13 +267,15 @@ public class Cliente extends Conexion{
         titulo_segundo.setLocation(320, 170);
         titulo_segundo.setSize(100, 40); 
         titulo_segundo.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
+        /**/
         
+        
+        /**/
         cronometro = new JLabel();
         cronometro.setBounds(540,5,150,40);
         cronometro.setVisible(true);
         ventana_jugar.add(cronometro);
-        cronometro.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));
-        
+        cronometro.setFont(new Font("Arial", Font.ROMAN_BASELINE, 20));       
         tiempo = new Timer (1000, new ActionListener()
         {
             @Override
@@ -276,7 +289,10 @@ public class Cliente extends Conexion{
             //declaramos en una variable cronometro el tiempo que transcurre
             cronometro.setText(min+":"+seg); 
             }});
+        /**/
         
+        
+        /**/
         tamaño1 = new JRadioButton("Tamaño 1", true);
         ventana_cliente.add(tamaño1);
         tamaño1.setBounds(125, 330, 100, 20);
@@ -318,46 +334,13 @@ public class Cliente extends Conexion{
             }
         };
         tamaño3.addActionListener(oir_tamaño3); 
+        /**/
         
+        /**/
         info_cartas1 = new JButton("info");
         ventana_cliente.add(info_cartas1);
         info_cartas1.setLocation(70, 305);
         info_cartas1.setSize(30, 15);
-        
-        info_cartas2 = new JButton("info");
-        ventana_cliente.add(info_cartas2);
-        info_cartas2.setLocation(220, 305);
-        info_cartas2.setSize(30, 15);
-        
-        info_cartas3 = new JButton("info");
-        ventana_cliente.add(info_cartas3);
-        info_cartas3.setLocation(370, 305);
-        info_cartas3.setSize(30, 15);
-        
-        ventana_info1 = new JFrame("JUEGA!");
-        ventana_info1.setSize(600, 540);
-        ventana_info1.setLocation(300, 100);
-        ventana_info1.setVisible(false);
-        ventana_info1.setResizable(true);
-        ventana_info1.setLayout(null);
-        ventana_info1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        
-        ventana_info2 = new JFrame("JUEGA!");
-        ventana_info2.setSize(600, 540);
-        ventana_info2.setLocation(300, 100);
-        ventana_info2.setVisible(false);
-        ventana_info2.setResizable(false);
-        ventana_info2.setLayout(null);
-        ventana_info2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-        
-        ventana_info2 = new JFrame("JUEGA!");
-        ventana_info2.setSize(600, 540);
-        ventana_info2.setLocation(300, 100);
-        ventana_info2.setVisible(false);
-        ventana_info2.setResizable(false);
-        ventana_info2.setLayout(null);
-        ventana_info2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-        
         ActionListener oir_info1 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -366,12 +349,287 @@ public class Cliente extends Conexion{
             }
         };
         info_cartas1.addActionListener(oir_info1); 
-        
-        cart1 = new JLabel(new ImageIcon("src/imagenes/1.png"));
-        ventana_info1.add(cart1);
-        cart1.setBounds(20,15,100,120);
-        cart1.setVisible(true);
+        /**/
         
         
+        /**/
+        info_cartas2 = new JButton("info");
+        ventana_cliente.add(info_cartas2);
+        info_cartas2.setLocation(220, 305);
+        info_cartas2.setSize(30, 15);
+        ActionListener oir_info2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_info2.setVisible(true);
+                ventana_cliente.setVisible(false);
+            }
+        };
+        info_cartas2.addActionListener(oir_info2); 
+        /**/
+        
+        
+        /**/
+        info_cartas3 = new JButton("info");
+        ventana_cliente.add(info_cartas3);
+        info_cartas3.setLocation(370, 305);
+        info_cartas3.setSize(30, 15);
+        ActionListener oir_info3 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_info3.setVisible(true);
+                ventana_cliente.setVisible(false);
+            }
+        };
+        info_cartas3.addActionListener(oir_info3); 
+        /**/
+        
+        /**/
+        ventana_info1 = new JFrame("JUEGA!");
+        ventana_info1.setSize(600, 540);
+        ventana_info1.setLocation(300, 100);
+        ventana_info1.setVisible(false);
+        ventana_info1.setResizable(false);
+        ventana_info1.setLayout(null);
+        ventana_info1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        titulo_info = new JLabel("Baraja Contenida");
+        ventana_info1.add(titulo_info);
+        titulo_info.setLocation(230, 50);
+        titulo_info.setSize(180, 30);
+        titulo_info.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+        boton_volver = new JButton("Volver");
+        ventana_info1.add(boton_volver);
+        boton_volver.setVisible(true);
+        boton_volver.setLocation(0,0);
+        boton_volver.setSize(80, 30);
+        boton_volver.setBackground(Color.LIGHT_GRAY);
+        ActionListener oir_volver_info1 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_info1.dispose();
+                ventana_cliente.setVisible(true);
+            }
+        };
+        boton_volver.addActionListener(oir_volver_info1);
+        /**/
+        
+        /**/
+        ventana_info2 = new JFrame("JUEGA!");
+        ventana_info2.setSize(600, 540);
+        ventana_info2.setLocation(300, 100);
+        ventana_info2.setVisible(false);
+        ventana_info2.setResizable(false);
+        ventana_info2.setLayout(null);
+        ventana_info2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        titulo_info = new JLabel("Baraja Contenida");
+        ventana_info2.add(titulo_info);
+        titulo_info.setLocation(230, 50);
+        titulo_info.setSize(180, 30);
+        titulo_info.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+        boton_volver3 = new JButton("Volver");
+        ventana_info2.add(boton_volver3);
+        boton_volver3.setVisible(true);
+        boton_volver3.setLocation(0,0);
+        boton_volver3.setSize(80, 30);
+        boton_volver3.setBackground(Color.LIGHT_GRAY);
+        ActionListener oir_volver_info2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_info2.dispose();
+                ventana_cliente.setVisible(true);
+            }
+        };
+        boton_volver3.addActionListener(oir_volver_info2);
+
+
+
+        /**/
+        
+        /**/
+        ventana_info3 = new JFrame("JUEGA!");
+        ventana_info3.setSize(600, 540);
+        ventana_info3.setLocation(300, 100);
+        ventana_info3.setVisible(false);
+        ventana_info3.setResizable(false);
+        ventana_info3.setLayout(null);
+        ventana_info3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        titulo_info = new JLabel("Baraja Contenida");
+        ventana_info3.add(titulo_info);
+        titulo_info.setLocation(230, 50);
+        titulo_info.setSize(180, 30);
+        titulo_info.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+        boton_volver4 = new JButton("Volver");
+        ventana_info3.add(boton_volver4);
+        boton_volver4.setVisible(true);
+        boton_volver4.setLocation(0,0);
+        boton_volver4.setSize(80, 30);
+        boton_volver4.setBackground(Color.LIGHT_GRAY);
+        ActionListener oir_volver_info3 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana_info3.dispose();
+                ventana_cliente.setVisible(true);
+            }
+        };
+        boton_volver4.addActionListener(oir_volver_info3);
+
+        /**/ 
+        
+        /**/
+        cr_cart1 = new JLabel(new ImageIcon("src/imagenes/1.png"));
+        ventana_info1.add(cr_cart1);
+        cr_cart1.setBounds(10,150,100,120);
+        cr_cart1.setVisible(true);
+        
+        cr_cart2 = new JLabel(new ImageIcon("src/imagenes/2.png"));
+        ventana_info1.add(cr_cart2);
+        cr_cart2.setBounds(120,150,100,120);
+        cr_cart2.setVisible(true);
+        
+        cr_cart3 = new JLabel(new ImageIcon("src/imagenes/3.png"));
+        ventana_info1.add(cr_cart3);
+        cr_cart3.setBounds(240,150,100,120);
+        cr_cart3.setVisible(true);
+        
+        cr_cart4 = new JLabel(new ImageIcon("src/imagenes/4.png"));
+        ventana_info1.add(cr_cart4);
+        cr_cart4.setBounds(360,150,100,120);
+        cr_cart4.setVisible(true);
+        
+        cr_cart5 = new JLabel(new ImageIcon("src/imagenes/5.png"));
+        ventana_info1.add(cr_cart5);
+        cr_cart5.setBounds(480,150,100,120);
+        cr_cart5.setVisible(true);
+        
+        cr_cart6 = new JLabel(new ImageIcon("src/imagenes/6.png"));
+        ventana_info1.add(cr_cart6);
+        cr_cart6.setBounds(10,300,100,120);
+        cr_cart6.setVisible(true);
+        
+        cr_cart7 = new JLabel(new ImageIcon("src/imagenes/7.png"));
+        ventana_info1.add(cr_cart7);
+        cr_cart7.setBounds(120,300,100,120);
+        cr_cart7.setVisible(true);
+        
+        cr_cart8 = new JLabel(new ImageIcon("src/imagenes/8.png"));
+        ventana_info1.add(cr_cart8);
+        cr_cart8.setBounds(240,300,100,120);
+        cr_cart8.setVisible(true);
+        
+        cr_cart9 = new JLabel(new ImageIcon("src/imagenes/9.png"));
+        ventana_info1.add(cr_cart9);
+        cr_cart9.setBounds(360,300,100,120);
+        cr_cart9.setVisible(true);
+        
+        cr_cart10 = new JLabel(new ImageIcon("src/imagenes/10.png"));
+        ventana_info1.add(cr_cart10);
+        cr_cart10.setBounds(480,300,100,120);
+        cr_cart10.setVisible(true);
+        /**/
+        
+        /**/
+        po_cart1 = new JLabel(new ImageIcon("src/imagenes2/1.png"));
+        ventana_info2.add(po_cart1);
+        po_cart1.setBounds(10,150,100,120);
+        po_cart1.setVisible(true);
+        
+        po_cart2 = new JLabel(new ImageIcon("src/imagenes2/2.png"));
+        ventana_info2.add(po_cart2);
+        po_cart2.setBounds(120,150,100,120);
+        po_cart2.setVisible(true);
+        
+        po_cart3 = new JLabel(new ImageIcon("src/imagenes2/3.png"));
+        ventana_info2.add(po_cart3);
+        po_cart3.setBounds(240,150,100,120);
+        po_cart3.setVisible(true);
+        
+        po_cart4 = new JLabel(new ImageIcon("src/imagenes2/4.png"));
+        ventana_info2.add(po_cart4);
+        po_cart4.setBounds(360,150,100,120);
+        po_cart4.setVisible(true);
+        
+        po_cart5 = new JLabel(new ImageIcon("src/imagenes2/5.png"));
+        ventana_info2.add(po_cart5);
+        po_cart5.setBounds(480,150,100,120);
+        po_cart5.setVisible(true);
+        
+        po_cart6 = new JLabel(new ImageIcon("src/imagenes2/6.png"));
+        ventana_info2.add(po_cart6);
+        po_cart6.setBounds(10,300,100,120);
+        po_cart6.setVisible(true);
+        
+        po_cart7 = new JLabel(new ImageIcon("src/imagenes2/7.png"));
+        ventana_info2.add(po_cart7);
+        po_cart7.setBounds(120,300,100,120);
+        po_cart7.setVisible(true);
+        
+        po_cart8 = new JLabel(new ImageIcon("src/imagenes2/8.png"));
+        ventana_info2.add(po_cart8);
+        po_cart8.setBounds(240,300,100,120);
+        po_cart8.setVisible(true);
+        
+        po_cart9 = new JLabel(new ImageIcon("src/imagenes2/9.png"));
+        ventana_info2.add(po_cart9);
+        po_cart9.setBounds(360,300,100,120);
+        po_cart9.setVisible(true);
+        
+        po_cart10 = new JLabel(new ImageIcon("src/imagenes2/10.png"));
+        ventana_info2.add(po_cart10);
+        po_cart10.setBounds(480,300,100,120);
+        po_cart10.setVisible(true);
+        /**/
+        
+        /**/
+        nt_cart1 = new JLabel(new ImageIcon("src/imagenes3/1.png"));
+        ventana_info3.add(nt_cart1);
+        nt_cart1.setBounds(10,150,100,120);
+        nt_cart1.setVisible(true);
+        
+        nt_cart2 = new JLabel(new ImageIcon("src/imagenes3/2.png"));
+        ventana_info3.add(nt_cart2);
+        nt_cart2.setBounds(120,150,100,120);
+        nt_cart2.setVisible(true);
+        
+        nt_cart3 = new JLabel(new ImageIcon("src/imagenes3/3.png"));
+        ventana_info3.add(nt_cart3);
+        nt_cart3.setBounds(240,150,100,120);
+        nt_cart3.setVisible(true);
+        
+        nt_cart4 = new JLabel(new ImageIcon("src/imagenes3/4.png"));
+        ventana_info3.add(nt_cart4);
+        nt_cart4.setBounds(360,150,100,120);
+        nt_cart4.setVisible(true);
+        
+        nt_cart5 = new JLabel(new ImageIcon("src/imagenes3/5.png"));
+        ventana_info3.add(nt_cart5);
+        nt_cart5.setBounds(480,150,100,120);
+        nt_cart5.setVisible(true);
+        
+        nt_cart6 = new JLabel(new ImageIcon("src/imagenes3/6.png"));
+        ventana_info3.add(nt_cart6);
+        nt_cart6.setBounds(10,300,100,120);
+        nt_cart6.setVisible(true);
+        
+        nt_cart7 = new JLabel(new ImageIcon("src/imagenes3/7.png"));
+        ventana_info3.add(nt_cart7);
+        nt_cart7.setBounds(120,300,100,120);
+        nt_cart7.setVisible(true);
+        
+        nt_cart8 = new JLabel(new ImageIcon("src/imagenes3/8.png"));
+        ventana_info3.add(nt_cart8);
+        nt_cart8.setBounds(240,300,100,120);
+        nt_cart8.setVisible(true);
+        
+        nt_cart9 = new JLabel(new ImageIcon("src/imagenes3/9.png"));
+        ventana_info3.add(nt_cart9);
+        nt_cart9.setBounds(360,300,100,120);
+        nt_cart9.setVisible(true);
+        
+        nt_cart10 = new JLabel(new ImageIcon("src/imagenes3/10.png"));
+        ventana_info3.add(nt_cart10);
+        nt_cart10.setBounds(480,300,100,120);
+        nt_cart10.setVisible(true);
+        /**/
+       
+
             }                        
 }
