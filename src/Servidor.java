@@ -338,7 +338,15 @@ public class Servidor extends Cliente {
                                        posinx = k;
                                        acposy = l;  
                                        //cartas de la matriz en la interfaz sencilla del servidor
+                                       if(elegir_contexto.isSelected()){
                                        tablero2[k][l].setIcon(new ImageIcon("src/imagenes/"+mat1[k][l]+".PNG"));
+                                       }
+                                       if(elegir_contexto2.isSelected()){
+                                       tablero2[k][l].setIcon(new ImageIcon("src/imagenes2/"+mat1[k][l]+".PNG"));
+                                       }
+                                       if(elegir_contexto3.isSelected()){
+                                       tablero2[k][l].setIcon(new ImageIcon("src/imagenes3/"+mat1[k][l]+".PNG"));
+                                       }
                                        if(contador == 1){
                                        annum = mat[k][l];
                                        anposx = k;
@@ -374,11 +382,10 @@ public class Servidor extends Cliente {
                                         if (mat1[m][n] == -1)
                                         acum++;
                                         //aleatorio();
-                                        if(actual_1.getText().equals("Turno actual: "+ingresar_nombre1.getText())){
-                                           
-                                        puntos += 1;
-                                        puntos2 += 1;
-                                        puntuacion.setText("P1: "+puntos);
+                                        if(actual_1.getText().equals("Turno actual: "+ingresar_nombre1.getText())){                                           
+                                            puntos += 1;
+                                            puntos2 += 1;
+                                            puntuacion.setText("P1: "+puntos);
                                         }
                                         if(actual_1.getText().equals("Turno actual: "+ingresar_nombre2.getText())){                                           
                                             puntuacion2.setText("P2: "+puntos2);
