@@ -10,15 +10,16 @@ public class Cliente {
         JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas, ventana_info1, ventana_info2, ventana_info3 = null; 
         JTextField ingresar_nombre1, ingresar_nombre2 = null;
         JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3, tamaño1, tamaño2, tamaño3  = null; 
-        JLabel puntuacion, nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, matriz [][], cr_cart1, cr_cart2, cr_cart3, cr_cart4, cr_cart5, cr_cart6, cr_cart7, cr_cart8, cr_cart9, cr_cart10, po_cart1, po_cart2, po_cart3, po_cart4, po_cart5, po_cart6, po_cart7, po_cart8, po_cart9, po_cart10,nt_cart1, nt_cart2, nt_cart3, nt_cart4, nt_cart5, nt_cart6, nt_cart7, nt_cart8, nt_cart9, nt_cart10, titulo_info = null;
+        JLabel actual_2, tablero2 [][], puntuacion2,  puntuacion, nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, tablero [][], cr_cart1, cr_cart2, cr_cart3, cr_cart4, cr_cart5, cr_cart6, cr_cart7, cr_cart8, cr_cart9, cr_cart10, po_cart1, po_cart2, po_cart3, po_cart4, po_cart5, po_cart6, po_cart7, po_cart8, po_cart9, po_cart10,nt_cart1, nt_cart2, nt_cart3, nt_cart4, nt_cart5, nt_cart6, nt_cart7, nt_cart8, nt_cart9, nt_cart10, titulo_info = null;
         JButton boton_validar, boton_creditos, boton_volver2, boton_reglas, boton_volver1, info_cartas1, info_cartas2, info_cartas3, boton_volver, boton_volver3, boton_volver4 = null; 
         JTextArea creditos, reglas = null;
-        Timer espera, espera2, tiempo = null;
-        int seg, min, aleatorio, contador,ban,ban1,annum,anposx,anposy,acnum,acposx,acposy, consegund, puntos = 0;
-        int matrx [][] = new int[4][5];
-        int mat1 [][] = new int[4][5];
+        Timer esperar, esperar2, tiempo = null;
+        int puntos2, seg, min, aleatorio, contador,ban,ban1,annum,anposx,anposy,acnum,posinx,acposy, consegund, puntos = 0;
+        int mat [][] = new int[4][5];
+        int mat1 [][] = new int[4][5]; 
         Socket client = null;
         Random ran;
+        JButton btn = null;
         
         public Cliente(){
             MakeInterface();
@@ -34,7 +35,7 @@ public class Cliente {
         ventana_cliente.setResizable(false);
         ventana_cliente.setLayout(null);
         ventana_cliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+              
         ingresar_nombre1 = new JTextField(10);
         ventana_cliente.add(ingresar_nombre1);
         ingresar_nombre1.setBounds(160, 200, 120, 25);
@@ -42,8 +43,7 @@ public class Cliente {
         
         ingresar_nombre2 = new JTextField(10);
         ventana_cliente.add(ingresar_nombre2);
-        ingresar_nombre2.setSize(120, 25);
-        ingresar_nombre2.setLocation(320, 200);
+        ingresar_nombre2.setBounds(320, 200, 120, 25);
         ingresar_nombre2.setFont(new Font("Impact", Font.ROMAN_BASELINE, 16));
         
         elegir_contexto = new JRadioButton("Categoría 1", true);
@@ -78,12 +78,24 @@ public class Cliente {
         actual_1.setLocation(375, 2);
         actual_1.setSize(250, 30);
         actual_1.setFont(new Font("Impact", Font.ROMAN_BASELINE, 30));
+        
+        actual_2 = new JLabel("");
+        ventana_jugar.add(actual_2);
+        actual_2.setLocation(0, 500);
+        actual_2.setSize(250, 30);
+        actual_2.setFont(new Font("Impact", Font.ROMAN_BASELINE, 30));
               
         puntuacion = new JLabel("");
         ventana_jugar.add(puntuacion);
         puntuacion.setLocation(0, 50);
         puntuacion.setSize(100, 100);
         puntuacion.setFont(new Font("Impact", Font.ROMAN_BASELINE, 20));
+        
+        puntuacion2 = new JLabel("");
+        ventana_jugar.add(puntuacion2);
+        puntuacion2.setLocation(0, 70);
+        puntuacion2.setSize(100, 100);
+        puntuacion2.setFont(new Font("Impact", Font.ROMAN_BASELINE, 20));
         
         nombre1 = new JLabel("");
         ventana_jugar.add(nombre1);
@@ -118,13 +130,13 @@ public class Cliente {
         boton_creditos.setSize(120, 30);
         boton_creditos.setFont(new Font("Impact", Font.ROMAN_BASELINE, 18));
         
-        creditos = new JTextArea("Aquí va mi nombre \n\nAquí va mi carné \n\nAquí va la insitución \n\nAquí va la fecha de entrega");
+        creditos = new JTextArea("Axel Flores Lara \n\n2021453573 \n\nInsituto Tecnologico de Costa Rica \n\n21 de Abril del año 2022");
         ventana_creditos.add(creditos);
         creditos.setLocation(100, 50);
         creditos.setSize(375, 275);
         creditos.setEditable(false);
         creditos.setBackground(Color.LIGHT_GRAY);
-        creditos.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 16));
+        creditos.setFont(new Font("Impact", Font.ROMAN_BASELINE, 16));
         
         boton_volver2 = new JButton("Volver");
         ventana_creditos.add(boton_volver2);
@@ -150,13 +162,13 @@ public class Cliente {
         ventana_reglas.setLayout(null);
         ventana_reglas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        reglas = new JTextArea("Aquí va la regla numero 1 \n\nAquí va la regla numero 2 \n\nEspecificación de carta 1 \n\n Especificación carta 2 \n\nEspecificacion carta 3");
+        reglas = new JTextArea("Selecciona tu categoria de cartas favorita \n\nElige el nivel de dificultad \n\nIngresa los nombres de los 2 usuarios \n\n Juega");
         ventana_reglas.add(reglas);
         reglas.setLocation(100, 50);
         reglas.setSize(375, 275);
         reglas.setEditable(false);
         reglas.setBackground(Color.GRAY);
-        reglas.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 20));
+        reglas.setFont(new Font("Impact", Font.ROMAN_BASELINE, 20));
         /**/
         
         
@@ -456,6 +468,13 @@ public class Cliente {
         ventana_info3.add(nt_cart10);
         nt_cart10.setBounds(480,300,100,120);
         nt_cart10.setVisible(true);
+        
+        btn = new JButton("SALIR");  
+        ventana_jugar.add(btn);
+        btn.setSize(130, 50);
+        btn.setBackground(Color.LIGHT_GRAY);
+        btn.setLocation(10, 600);   
+        btn.setFont(new Font("Impact", Font.ROMAN_BASELINE, 22));
         /**/
         
         Thread principal = new Thread(new Runnable(){
@@ -471,8 +490,8 @@ public class Cliente {
         });
         principal.start();  
         
-        }
-        
+
+}   
     public static void main(String [] args){
         /* clase cliente tiene al constructor new Cliente que está en Public Cliente y contiene a MakeInterface, makeinterface hace la interfaz, pone a trabajar los metodos y conecta el socket mediante un thread con ciclo infinito*/
         new Cliente();
