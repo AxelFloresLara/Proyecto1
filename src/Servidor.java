@@ -383,14 +383,13 @@ public class Servidor extends Cliente {
                                         acum++;
                                         //aleatorio();
                                         if(actual_1.getText().equals("Turno actual: "+ingresar_nombre1.getText())){                                           
-                                            puntos += 1;
-                                            puntos2 += 1;
+                                            puntos++;
                                             puntuacion.setText("P1: "+puntos);
                                         }
                                         if(actual_1.getText().equals("Turno actual: "+ingresar_nombre2.getText())){                                           
                                             puntuacion2.setText("P2: "+puntos2);
-                                            puntos2+=1;
-                                            puntos-=1;
+                                            puntos2++;
+                                            
                                         }
                                         cambiar_turno2();
                                         }                                                     
@@ -398,7 +397,7 @@ public class Servidor extends Cliente {
 
                                         //mensaje y puntuación al terminar de jugar 
                                         if(acum == 20){
-                                        JOptionPane.showMessageDialog(ventana_jugar, " FELICIDADES GANASTE \n Tu puntuación "+puntos);
+                                        JOptionPane.showMessageDialog(ventana_jugar, " FELICIDADES GANASTE \n Puntuacion usuario 1 "+puntos + "Puntuacion usuario 2"+puntos2);
                                         System.exit(0);
                                         }
                                         }
