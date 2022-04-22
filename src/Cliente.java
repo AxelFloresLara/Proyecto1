@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class Cliente {
     
-        JFrame ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas, ventana_info1, ventana_info2, ventana_info3 = null; 
+        JFrame datos, ventana_cliente, ventana_jugar, ventana_creditos, ventana_reglas, ventana_info1, ventana_info2, ventana_info3 = null; 
         JTextField ingresar_nombre1, ingresar_nombre2 = null;
         JRadioButton elegir_contexto, elegir_contexto2, elegir_contexto3, tamaño1, tamaño2, tamaño3  = null; 
         JLabel actual_2, tablero2 [][], puntuacion2,  puntuacion, nombre1, nombre2, titulo_primero, titulo_segundo, cronometro, actual_1, tablero [][], cr_cart1, cr_cart2, cr_cart3, cr_cart4, cr_cart5, cr_cart6, cr_cart7, cr_cart8, cr_cart9, cr_cart10, po_cart1, po_cart2, po_cart3, po_cart4, po_cart5, po_cart6, po_cart7, po_cart8, po_cart9, po_cart10,nt_cart1, nt_cart2, nt_cart3, nt_cart4, nt_cart5, nt_cart6, nt_cart7, nt_cart8, nt_cart9, nt_cart10, titulo_info = null;
@@ -314,7 +314,7 @@ public class Cliente {
 
         /**/ 
         
-        /**/
+        /**/       
         cr_cart1 = new JLabel(new ImageIcon("src/imagenes/1.png"));
         ventana_info1.add(cr_cart1);
         cr_cart1.setBounds(10,150,100,120);
@@ -477,11 +477,12 @@ public class Cliente {
         btn.setFont(new Font("Impact", Font.ROMAN_BASELINE, 22));
         /**/
         
+        //conexión del cliente
         Thread principal = new Thread(new Runnable(){
            public void run(){
                
                 try{
-                    /* se define la ip local y el mismo puerto asignado al servidor */
+                    // se define la ip local y el mismo puerto asignado al servidor 
                 client = new Socket("127.0.0.1", 1200);       
                 
                 }catch(Exception ex){
@@ -493,7 +494,7 @@ public class Cliente {
 
 }   
     public static void main(String [] args){
-        /* clase cliente tiene al constructor new Cliente que está en Public Cliente y contiene a MakeInterface, makeinterface hace la interfaz, pone a trabajar los metodos y conecta el socket mediante un thread con ciclo infinito*/
+        // clase cliente tiene al constructor new Cliente que está en Public Cliente y contiene a MakeInterface, makeinterface hace la interfaz, pone a trabajar los metodos y conecta el socket mediante un thread con ciclo infinito
         new Cliente();
 
     }    

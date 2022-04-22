@@ -14,8 +14,6 @@ public class Servidor extends Cliente {
     /* Socket: Nos permite implementar la conexión por parte del cliente*/
     Socket client = null;
     
-    JFrame datos = null;
-   
     public Servidor(){
         
     /* Constructor de los metodos */
@@ -375,16 +373,17 @@ public class Servidor extends Cliente {
                                         for (int n = 0; n < 5; n++) {
                                         if (mat1[m][n] == -1)
                                         acum++;
-                                        //numaleatorios();
+                                        //aleatorio();
                                         if(actual_1.getText().equals("Turno actual: "+ingresar_nombre1.getText())){
                                            
                                         puntos += 1;
-                                        puntos2 += 20;
+                                        puntos2 += 1;
                                         puntuacion.setText("P1: "+puntos);
                                         }
                                         if(actual_1.getText().equals("Turno actual: "+ingresar_nombre2.getText())){                                           
                                             puntuacion2.setText("P2: "+puntos2);
-                                            puntos2+=2;
+                                            puntos2+=1;
+                                            puntos-=1;
                                         }
                                         cambiar_turno2();
                                         }                                                     
@@ -415,6 +414,7 @@ public class Servidor extends Cliente {
                                             }
                                         
                                         }});
+                                       //inicio y reinicio del segundo timer
                                         if(ban == 0)
                                            esperar2.start();
                                            ban = 1;
@@ -456,13 +456,13 @@ public class Servidor extends Cliente {
         //arranque del hilo 
         principal1.start();
     }   
-       
+      
+    //generar cartas aleatorias al inicio de cada juego
     private void aleatorio(){
         int acumulador = 0;
          for (int i = 0; i < 4; i++) 
             for (int j = 0; j < 5; j++){
-                mat[i][j] = 0;               
-              //  mat2[i][j] = 0;
+                mat[i][j] = 0;                            
             }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
@@ -483,6 +483,7 @@ public class Servidor extends Cliente {
                 }while(acumulador == 3); 
             }   
         }    
+        //acción del botón para salir 
            ActionListener salir = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -491,7 +492,7 @@ public class Servidor extends Cliente {
         };
         btn.addActionListener(salir);
     }
-    
+    // cambiar el turno actual 
     public void cambiar_turno1(){
             if(actual_1.getText().equals("Turno actual: "+ingresar_nombre1.getText())){
                 actual_1.setText("Turno actual: "+ingresar_nombre2.getText());
@@ -509,6 +510,7 @@ public class Servidor extends Cliente {
                 actual_1.setText("Turno actual: "+ingresar_nombre1.getText());
             }
     }
+    // main del programa serrvidor
         public static void main(String [] args){
         new Servidor();
         }  
